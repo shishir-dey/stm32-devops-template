@@ -26,7 +26,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/cmake-host-build-debug -- -j 4
       
     - name: Test on host
-      run: ./${{github.workspace}}/cmake-host-build-debug/stm32-devops-template.out
+      run: .${{github.workspace}}/cmake-host-build-debug/stm32-devops-template.out
     
     - name: Install gcc-arm-none-eabi
       run: sudo apt install gcc-arm-none-eabi
