@@ -10,8 +10,8 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
 set(COMMON_SOURCES
-        lib/linked_list.c
-        lib/linked_list.h
+        lib/linked_list/linked_list.c
+        lib/linked_list/linked_list.h
 )
 
 if( HOST )
@@ -38,7 +38,7 @@ else()
         )
 
         target_include_directories(${TARGET_EXECUTABLE} PRIVATE
-                lib
+                lib/linked_list
         )
 
         target_compile_options(${TARGET_EXECUTABLE} PRIVATE
