@@ -17,6 +17,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: Configure CMake for host
+      run: cmake -B ${{github.workspace}}/cmake-host-build-debug -DHOST=True -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build for host
+      run: cmake --build ${{github.workspace}}/cmake-host-build-debug -- -j 4
+      
+    - name: Test on host
+      run: ./${{github.workspace}}/cmake-host-build-debug/stm32-devops-template.out
+    
     - name: Install gcc-arm-none-eabi
       run: sudo apt install gcc-arm-none-eabi
 
@@ -24,7 +33,6 @@ jobs:
       run: cmake -B ${{github.workspace}}/cmake-target-build-debug -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi-gcc.cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build for target
-      # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/cmake-target-build-debug -- -j 4
 
       
