@@ -9,9 +9,14 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+set(COMMON_SOURCES
+        lib/linked_list.c
+        lib/linked_list.h
+)
 
 if( HOST )
 else() 
+
         set(TARGET_SOURCES
                 src/main.c
                 src/main.h
@@ -25,6 +30,7 @@ else()
 
         add_executable(${TARGET_EXECUTABLE}
                 ${TARGET_SOURCES}
+                ${COMMON_SOURCES}
         )
 
         target_compile_definitions(${TARGET_EXECUTABLE} PRIVATE
@@ -32,6 +38,7 @@ else()
         )
 
         target_include_directories(${TARGET_EXECUTABLE} PRIVATE
+                lib
         )
 
         target_compile_options(${TARGET_EXECUTABLE} PRIVATE
