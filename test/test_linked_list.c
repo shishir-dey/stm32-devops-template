@@ -1,5 +1,5 @@
-#include "Unity.h"
-#include "linked_list.h"
+#include "../lib/Unity/src/unity.h"
+#include "../lib/linked_list/linked_list.h"
 
 void setUp(void)
 {
