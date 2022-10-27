@@ -1,0 +1,30 @@
+name: CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# env:
+#   BUILD_TYPE: Debug
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install gcc-arm-none-eabi
+      run: sudo apt install gcc-arm-none-eabi
+
+    - name: Configure CMake for target
+      run: cmake -B ${{github.workspace}}/cmake-target-build-debug -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi-gcc.cmake -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build for target
+      # Build your program with the given configuration
+      run: cmake --build ${{github.workspace}}/cmake-target-build-debug -- -j 4
+
+      
