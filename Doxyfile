@@ -1,4 +1,4 @@
-OUTPUT_DIRECTORY   = docs/
+OUTPUT_DIRECTORY   = docs
 CASE_SENSE_NAMES   = NO
 QUIET              = YES
 JAVADOC_AUTOBRIEF  = YES
@@ -12,5 +12,5 @@ CREATE_SUBDIRS     = NO
 GENERATE_LATEX     = NO
 
 PROJECT_NAME     = "stm32-devops-template"
-HTML_OUTPUT      = 
+HTML_OUTPUT      = .
 INPUT            = lib/linked_list/linked_list.c
