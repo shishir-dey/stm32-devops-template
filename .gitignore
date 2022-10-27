@@ -53,3 +53,4 @@ dkms.conf
 
 # Directories
 cmake-target-build-debug/
+cmake-host-build-debug/
