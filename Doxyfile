@@ -1,0 +1,16 @@
+OUTPUT_DIRECTORY   = docs/
+CASE_SENSE_NAMES   = NO
+QUIET              = YES
+JAVADOC_AUTOBRIEF  = YES
+SEARCHENGINE       = NO
+LATEX_HIDE_INDICES = YES
+COMPACT_LATEX      = YES
+WARN_AS_ERROR      = FAIL_ON_WARNINGS
+HTML_COLORSTYLE    = LIGHT
+
+CREATE_SUBDIRS     = NO
+GENERATE_LATEX     = NO
+
+PROJECT_NAME     = "stm32-devops-template"
+HTML_OUTPUT      = 
+INPUT            = lib/linked_list/linked_list.c

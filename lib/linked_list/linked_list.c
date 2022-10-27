@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "linked_list.h"
 
+/// @brief Initialize a new linked list
+/// @return Pointer to the new list
 Node *InitList()
 {
     Node *list = malloc(sizeof(Node));
@@ -9,6 +11,9 @@ Node *InitList()
     return list;
 }
 
+/// @brief Add a new node to the list
+/// @param list Pointer to the list
+/// @param data Pointer to the data to add
 void AddNode(Node *list, void *data)
 {
     if (list->data == NULL)
@@ -29,6 +34,8 @@ void AddNode(Node *list, void *data)
     }
 }
 
+/// @brief Delete the list
+/// @param list Pointer to the list
 void DeleteList(Node *list)
 {
     Node *current = list;
