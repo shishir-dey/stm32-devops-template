@@ -38,4 +38,5 @@ void DeleteList(Node *list)
         free(current);
         current = next;
     }
+    *list = (Node){NULL, NULL};
 }

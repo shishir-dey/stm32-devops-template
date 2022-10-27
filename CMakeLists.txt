@@ -15,8 +15,39 @@ set(COMMON_SOURCES
 )
 
 if( HOST )
-else() 
+        set(HOST_SOURCES
+                test/test_linked_list.c
+                lib/Unity/src/unity_internals.h
+                lib/Unity/src/unity.h
+                lib/Unity/src/unity.c
+        )
 
+        set(HOST_EXECUTABLE
+                ${PROJECT_NAME}.out
+        )
+
+        add_executable(${HOST_EXECUTABLE}
+                ${HOST_SOURCES}
+                ${COMMON_SOURCES}
+        )
+
+        target_compile_definitions(${HOST_EXECUTABLE} PRIVATE
+        )
+
+        target_include_directories(${HOST_EXECUTABLE} PRIVATE
+                lib/linked_list
+                lib/Unity/src
+        )
+
+        target_compile_options(${HOST_EXECUTABLE} PRIVATE
+                -Wall
+
+                $<$<CONFIG:Debug>:-Og>
+        )
+
+        target_link_options(${HOST_EXECUTABLE} PRIVATE
+        )
+else() 
         set(TARGET_SOURCES
                 src/main.c
                 src/main.h
