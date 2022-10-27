@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
     
     - name: Configure CMake for host
       run: cmake -B ${{github.workspace}}/cmake-host-build-debug -DHOST=True -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
