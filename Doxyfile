@@ -13,4 +13,4 @@ GENERATE_LATEX     = NO
 
 PROJECT_NAME     = "stm32-devops-template"
 HTML_OUTPUT      = .
-INPUT            = lib/linked_list/linked_list.c
+INPUT            = src
