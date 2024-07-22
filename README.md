@@ -14,4 +14,3 @@
 
 ## Contributions
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
-# stm32-devops-template
