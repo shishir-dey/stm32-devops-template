@@ -66,8 +66,10 @@ else()
                 src/syscalls.c
         )
 
+        include(${CMAKE_SOURCE_DIR}/config/project_info.cmake)
+
         set(TARGET_EXECUTABLE
-                ${PROJECT_NAME}.out
+                ${PROJECT_NAME}_${ENVIRONMENT}_${CLIENT}_${FEATURE}_${FW_VERSION}.out
         )
 
         add_executable(${TARGET_EXECUTABLE}
@@ -107,7 +109,7 @@ else()
                 -lc
                 -lm
                 # -lnosys
-                -Wl,-Map=${PROJECT_NAME}.map,--cref
+                -Wl,-Map=${PROJECT_NAME}_${ENVIRONMENT}_${CLIENT}_${FEATURE}_${FW_VERSION}.map,--cref
                 -Wl,--gc-sections
         )
 
@@ -120,7 +122,7 @@ else()
         # Create hex file
         add_custom_command(TARGET ${TARGET_EXECUTABLE}
                 POST_BUILD
-                COMMAND arm-none-eabi-objcopy -O ihex ${TARGET_EXECUTABLE} ${PROJECT_NAME}.hex
-                COMMAND arm-none-eabi-objcopy -O binary ${TARGET_EXECUTABLE} ${PROJECT_NAME}.bin
+                COMMAND arm-none-eabi-objcopy -O ihex ${TARGET_EXECUTABLE} ${PROJECT_NAME}_${ENVIRONMENT}_${CLIENT}_${FEATURE}_${FW_VERSION}.hex
+                COMMAND arm-none-eabi-objcopy -O binary ${TARGET_EXECUTABLE} ${PROJECT_NAME}_${ENVIRONMENT}_${CLIENT}_${FEATURE}_${FW_VERSION}.bin
         )
 endif()
