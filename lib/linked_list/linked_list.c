@@ -1,49 +1,54 @@
-#include <stdlib.h>
 #include "linked_list.h"
+#include <stdlib.h>
 
-/// @brief Initialize a new linked list
-/// @return Pointer to the new list
-Node *InitList()
+static node_t* head;
+
+status_t ll_init()
 {
-    Node *list = malloc(sizeof(Node));
-    list->data = NULL;
-    list->next = NULL;
-    return list;
+    status_t ret = FAILURE;
+    head->data = NULL;
+    head->next = NULL;
+    ret = SUCCESS;
+    return ret;
 }
 
-/// @brief Add a new node to the list
-/// @param list Pointer to the list
-/// @param data Pointer to the data to add
-void AddNode(Node *list, void *data)
+status_t ll_insert_at_head(node_t* new_node)
 {
-    if (list->data == NULL)
-    {
-        list->data = data;
-        list->next = NULL;
-    }
-    else
-    {
-        Node *node = list;
-        while (node->next != NULL)
-        {
-            node = node->next;
-        }
-        node->next = malloc(sizeof(Node));
-        node->next->data = data;
-        node->next->next = NULL;
-    }
+    status_t ret = FAILURE;
+    new_node->next = head;
+    head = new_node;
+    ret = SUCCESS;
+    return ret;
 }
 
-/// @brief Delete the list
-/// @param list Pointer to the list
-void DeleteList(Node *list)
+status_t ll_insert_at_tail(node_t* new_node)
 {
-    Node *current = list;
-    while (current != NULL)
-    {
-        Node *next = current->next;
-        free(current);
-        current = next;
+    status_t ret = FAILURE;
+    node_t* current = head;
+    while (current->next != NULL) {
+        current = current->next;
     }
-    *list = (Node){NULL, NULL};
+    current->next = new_node;
+    ret = SUCCESS;
+    return ret;
+}
+
+status_t ll_delete_at_head()
+{
+    status_t ret = FAILURE;
+    head = head->next;
+    ret = SUCCESS;
+    return ret;
+}
+
+status_t ll_delete_at_tail()
+{
+    status_t ret = FAILURE;
+    node_t* current = head;
+    while (current->next->next != NULL) {
+        current = current->next;
+    }
+    current->next = NULL;
+    ret = SUCCESS;
+    return ret;
 }
