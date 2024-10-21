@@ -4,6 +4,9 @@ project(stm32-devops-template)
 
 message("HOST=${HOST}")
 
+# Enable testing
+enable_testing()
+
 enable_language(C ASM)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -15,38 +18,46 @@ set(COMMON_SOURCES
 )
 
 if( HOST )
-        set(HOST_SOURCES
-                test/test_linked_list.c
-                lib/Unity/src/unity_internals.h
-                lib/Unity/src/unity.h
+        # Collect all test source files matching test/test_*.c
+        file(GLOB TEST_SOURCES "test/test_*.c")
+
+        # Loop over each test source file
+        foreach(TEST_SOURCE ${TEST_SOURCES})
+
+        # Get the file name without the directory and extension
+        get_filename_component(TEST_NAME ${TEST_SOURCE} NAME_WE)
+
+        # Create an executable for each test
+        add_executable(${TEST_NAME}
+                ${TEST_SOURCE}
+                ${COMMON_SOURCES}  # Common sources if needed
                 lib/Unity/src/unity.c
         )
 
-        set(HOST_EXECUTABLE
-                ${PROJECT_NAME}.out
+        # Set compile definitions if needed
+        target_compile_definitions(${TEST_NAME} PRIVATE
         )
 
-        add_executable(${HOST_EXECUTABLE}
-                ${HOST_SOURCES}
-                ${COMMON_SOURCES}
-        )
-
-        target_compile_definitions(${HOST_EXECUTABLE} PRIVATE
-        )
-
-        target_include_directories(${HOST_EXECUTABLE} PRIVATE
+        # Include directories
+        target_include_directories(${TEST_NAME} PRIVATE
                 lib/linked_list
                 lib/Unity/src
         )
 
-        target_compile_options(${HOST_EXECUTABLE} PRIVATE
+        # Set compile options
+        target_compile_options(${TEST_NAME} PRIVATE
                 -Wall
-
                 $<$<CONFIG:Debug>:-Og>
         )
 
-        target_link_options(${HOST_EXECUTABLE} PRIVATE
+        # Set link options if needed
+        target_link_options(${TEST_NAME} PRIVATE
         )
+
+        # Register the test with ctest
+        add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+
+        endforeach()
 else() 
         set(TARGET_SOURCES
                 src/main.c
