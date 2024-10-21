@@ -1,54 +1,75 @@
 #include "linked_list.h"
-#include <stdlib.h>
+#include <stddef.h>
 
-static node_t* head;
+static node_t* head = NULL;
 
-status_t ll_init()
+status_t ll_init(node_t* initial_node)
 {
-    status_t ret = FAILURE;
+    if (initial_node == NULL) {
+        return FAILURE;
+    }
+    head = initial_node;
     head->data = NULL;
     head->next = NULL;
-    ret = SUCCESS;
-    return ret;
+    return SUCCESS;
 }
 
 status_t ll_insert_at_head(node_t* new_node)
 {
-    status_t ret = FAILURE;
+    if (new_node == NULL) {
+        return FAILURE;
+    }
     new_node->next = head;
     head = new_node;
-    ret = SUCCESS;
-    return ret;
+    return SUCCESS;
 }
 
 status_t ll_insert_at_tail(node_t* new_node)
 {
-    status_t ret = FAILURE;
+    if (new_node == NULL) {
+        return FAILURE;
+    }
+
+    if (head == NULL) {
+        head = new_node;
+        head->next = NULL;
+        return SUCCESS;
+    }
+
     node_t* current = head;
     while (current->next != NULL) {
         current = current->next;
     }
     current->next = new_node;
-    ret = SUCCESS;
-    return ret;
+    new_node->next = NULL;
+    return SUCCESS;
 }
 
 status_t ll_delete_at_head()
 {
-    status_t ret = FAILURE;
+    if (head == NULL) {
+        return FAILURE;
+    }
+
     head = head->next;
-    ret = SUCCESS;
-    return ret;
+    return SUCCESS;
 }
 
 status_t ll_delete_at_tail()
 {
-    status_t ret = FAILURE;
+    if (head == NULL) {
+        return FAILURE;
+    }
+
+    if (head->next == NULL) {
+        head = NULL;
+        return SUCCESS;
+    }
+
     node_t* current = head;
     while (current->next->next != NULL) {
         current = current->next;
     }
     current->next = NULL;
-    ret = SUCCESS;
-    return ret;
+    return SUCCESS;
 }
