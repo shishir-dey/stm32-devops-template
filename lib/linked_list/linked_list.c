@@ -1,49 +1,75 @@
-#include <stdlib.h>
 #include "linked_list.h"
+#include <stddef.h>
 
-/// @brief Initialize a new linked list
-/// @return Pointer to the new list
-Node *InitList()
+static node_t* head = NULL;
+
+status_t ll_init(node_t* initial_node)
 {
-    Node *list = malloc(sizeof(Node));
-    list->data = NULL;
-    list->next = NULL;
-    return list;
+    if (initial_node == NULL) {
+        return FAILURE;
+    }
+    head = initial_node;
+    head->data = NULL;
+    head->next = NULL;
+    return SUCCESS;
 }
 
-/// @brief Add a new node to the list
-/// @param list Pointer to the list
-/// @param data Pointer to the data to add
-void AddNode(Node *list, void *data)
+status_t ll_insert_at_head(node_t* new_node)
 {
-    if (list->data == NULL)
-    {
-        list->data = data;
-        list->next = NULL;
+    if (new_node == NULL) {
+        return FAILURE;
     }
-    else
-    {
-        Node *node = list;
-        while (node->next != NULL)
-        {
-            node = node->next;
-        }
-        node->next = malloc(sizeof(Node));
-        node->next->data = data;
-        node->next->next = NULL;
-    }
+    new_node->next = head;
+    head = new_node;
+    return SUCCESS;
 }
 
-/// @brief Delete the list
-/// @param list Pointer to the list
-void DeleteList(Node *list)
+status_t ll_insert_at_tail(node_t* new_node)
 {
-    Node *current = list;
-    while (current != NULL)
-    {
-        Node *next = current->next;
-        free(current);
-        current = next;
+    if (new_node == NULL) {
+        return FAILURE;
     }
-    *list = (Node){NULL, NULL};
+
+    if (head == NULL) {
+        head = new_node;
+        head->next = NULL;
+        return SUCCESS;
+    }
+
+    node_t* current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = new_node;
+    new_node->next = NULL;
+    return SUCCESS;
+}
+
+status_t ll_delete_at_head()
+{
+    if (head == NULL) {
+        return FAILURE;
+    }
+
+    head = head->next;
+    return SUCCESS;
+}
+
+status_t ll_delete_at_tail()
+{
+    if (head == NULL) {
+        return FAILURE;
+    }
+
+    if (head->next == NULL) {
+        head = NULL;
+        return SUCCESS;
+    }
+
+    node_t* current = head;
+    while (current->next->next != NULL) {
+        current = current->next;
+    }
+    current->next = NULL;
+    return SUCCESS;
 }
