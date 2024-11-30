@@ -21,6 +21,9 @@ RUN wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-rm/12.2.rel1
 # Verify installation
 RUN arm-none-eabi-gcc --version
 
+# Create the workspace directory
+RUN mkdir -p /workspace
+
 # Set the working directory inside the container
 WORKDIR /workspace
 
