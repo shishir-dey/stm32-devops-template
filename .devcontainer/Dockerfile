@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install xpack ARM GCC toolchain
 RUN npm install --global @xpack-dev-tools/arm-none-eabi-gcc
 
+# Debug: List npm global directories and check installation
+RUN npm list -g @xpack-dev-tools/arm-none-eabi-gcc
+
 # Find and symlink the ARM GCC binaries
 RUN GCC_PATH=$(find /root/.local/xPacks/@xpack-dev-tools/arm-none-eabi-gcc -name "bin" -type d | head -n 1) && \
     if [ -z "$GCC_PATH" ]; then echo "ARM GCC toolchain not found"; exit 1; fi && \
