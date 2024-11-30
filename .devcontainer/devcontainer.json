@@ -1,0 +1,19 @@
+{
+    "name": "Development container for STM32",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/workspaces/stm32-devops-template",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools"
+            ]
+        }
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspaces/stm32-devops-template,type=bind"
+    ],
+    "postCreateCommand": "echo 'Dev environment ready!'"
+}
