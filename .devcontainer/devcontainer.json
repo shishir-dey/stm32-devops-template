@@ -3,7 +3,7 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/workspaces/stm32-devops-template",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -13,7 +13,7 @@
         }
     },
     "mounts": [
-        "source=${localWorkspaceFolder},target=/workspace,type=bind"
+        "source=${localWorkspaceFolder},target=/workspaces/stm32-devops-template,type=bind"
     ],
     "postCreateCommand": "echo 'Dev environment ready!'"
 }

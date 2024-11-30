@@ -13,19 +13,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Download and install arm-none-eabi-gcc
+    # Download and install arm-none-eabi-gcc
 RUN wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-rm/12.2.rel1/gcc-arm-none-eabi-12.2.rel1-x86_64-linux.tar.bz2 \
     | tar -xj -C /opt/ \
     && ln -s /opt/gcc-arm-none-eabi-12.2.rel1/bin/* /usr/local/bin/
 
-# Verify installation
+    # Verify installation
 RUN arm-none-eabi-gcc --version
 
-# Create the workspace directory
-RUN mkdir -p /workspace
-
 # Set the working directory inside the container
-WORKDIR /workspace
+WORKDIR /workspaces/stm32-devops-template
 
 # Default command for the container
 CMD ["bash"]
