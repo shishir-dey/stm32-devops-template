@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN npm install --global @xpack-dev-tools/arm-none-eabi-gcc
 
 # Verify installation
-RUN /usr/local/bin/xpack-arm-none-eabi-gcc --version
+RUN arm-none-eabi-gcc --version
 
 # Set the working directory inside the container
 WORKDIR /workspaces/stm32-devops-template
