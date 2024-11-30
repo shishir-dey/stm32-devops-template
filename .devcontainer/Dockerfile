@@ -13,6 +13,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     tar \
     gzip \
+    cmake \
+    ninja-build \
+    gcc \
+    g++ \
+    python3 \
+    python3-pip \
+    libstdc++-arm-none-eabi-newlib \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
