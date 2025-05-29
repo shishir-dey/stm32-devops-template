@@ -1,3 +1,23 @@
+/**
+ * @file queue.c
+ * @brief Implementation of regular queue (FIFO) operations
+ * @details This file contains the implementation of all regular queue operations
+ *          using circular array indexing for efficient memory utilization.
+ *
+ * @author Shishir Dey
+ * @date 2025
+ * @version 1.0.0
+ *
+ * @par Implementation Details:
+ *      - Uses circular array with front/rear pointers
+ *      - Count variable tracks current number of elements
+ *      - Efficient O(1) operations for all queue functions
+ *      - Prevents buffer overflow through proper bounds checking
+ *
+ * @note All functions include proper error checking and boundary validation
+ * @see queue.h for API documentation
+ */
+
 #include <stddef.h>
 
 #include "queue.h"

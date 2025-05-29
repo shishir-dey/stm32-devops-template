@@ -1,7 +1,36 @@
+/**
+ * @file linked_list.c
+ * @brief Implementation of linked list operations
+ * @details This file contains the implementation of all linked list operations
+ *          using a global head pointer and manual node management.
+ *
+ * @author Shishir Dey
+ * @date 2025
+ * @version 1.0.0
+ *
+ * @par Implementation Details:
+ *      - Uses global static head pointer for list management
+ *      - User-provided nodes with manual memory management
+ *      - Traditional linked list traversal algorithms
+ *      - Head operations are O(1), tail operations are O(n)
+ *
+ * @note All functions include proper error checking and NULL pointer validation
+ * @note Only one linked list instance can be active at a time
+ * @see linked_list.h for API documentation
+ */
+
 #include <stddef.h>
 
 #include "linked_list.h"
 
+/**
+ * @brief Global head pointer for the linked list
+ * @details Static variable that maintains the reference to the first node
+ *          in the linked list. Only one list can be active at a time.
+ *
+ * @note This global state limits the implementation to a single list instance
+ * @warning Direct access to this variable should be avoided
+ */
 static node_t* head = NULL;
 
 status_t ll_init(node_t* initial_node)

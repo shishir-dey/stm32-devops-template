@@ -1,3 +1,17 @@
+/**
+ * @file circular_queue.c
+ * @brief Implementation of circular queue (ring buffer) operations
+ * @details This file contains the implementation of all circular queue operations
+ *          using efficient modulo arithmetic for wrap-around behavior.
+ *
+ * @author Shishir Dey
+ * @date 2025
+ * @version 1.0.0
+ *
+ * @note All functions include proper error checking and boundary validation
+ * @see circular_queue.h for API documentation
+ */
+
 #include <stddef.h>
 
 #include "circular_queue.h"
