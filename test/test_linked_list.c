@@ -1,5 +1,5 @@
 #include "../lib/Unity/src/unity.h"
-#include "../lib/linked_list/linked_list.h"
+#include "../src/data/linked_list.h"
 
 // Global node variables
 node_t test_node_initial;
@@ -12,8 +12,7 @@ void setUp(void)
 }
 
 void tearDown(void)
-{
-}
+{}
 
 void resetTest(void)
 {
@@ -74,5 +73,6 @@ int main(void)
     RUN_TEST(test_ll_insert_at_tail);
     RUN_TEST(test_ll_delete_at_head);
     RUN_TEST(test_ll_delete_at_tail);
+
     return UNITY_END();
 }

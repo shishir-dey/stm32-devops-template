@@ -13,8 +13,15 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
 set(COMMON_SOURCES
-        lib/linked_list/linked_list.c
-        lib/linked_list/linked_list.h
+        src/data/linked_list.c
+        src/data/linked_list.h
+        src/data/common_types.h
+        src/data/queue.c
+        src/data/queue.h
+        src/data/circular_queue.c
+        src/data/circular_queue.h
+        src/data/priority_queue.c
+        src/data/priority_queue.h
 )
 
 if( HOST )
@@ -40,7 +47,7 @@ if( HOST )
 
         # Include directories
         target_include_directories(${TEST_NAME} PRIVATE
-                lib/linked_list
+                src/data
                 lib/Unity/src
         )
 
@@ -62,8 +69,8 @@ else()
         set(TARGET_SOURCES
                 src/main.c
                 src/main.h
-                src/startup_stm32f407xx.c
-                src/syscalls.c
+                src/autogen/startup_stm32f407xx.c
+                src/autogen/syscalls.c
         )
 
         include(${CMAKE_SOURCE_DIR}/config/project_info.cmake)
@@ -100,7 +107,7 @@ else()
         )
 
         target_link_options(${TARGET_EXECUTABLE} PRIVATE
-                -T${CMAKE_SOURCE_DIR}/src/linker_script.ld
+                -T${CMAKE_SOURCE_DIR}/src/autogen/linker_script.ld
                 -mcpu=cortex-m4
                 -mthumb
                 -mfpu=fpv4-sp-d16
