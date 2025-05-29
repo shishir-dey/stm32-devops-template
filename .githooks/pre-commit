@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Pre-commit hook to format code with uncrustify
+# This hook will automatically format C/C++ files before committing
+
+# Exit on any error
+set -e
+
+echo "Running uncrustify formatter..."
+
+# Find and format all C/C++ files, excluding external dependencies
+find . -type f \( -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \) \
+    -not -path "./extern/*" \
+    -not -path "./external/*" \
+    -not -path "./build/*" \
+    -not -path "./.git/*" \
+    -not -path "./lib/*" \
+    -not -path "./src/autogen/*" \
+    -not -path "./cmake-host-build-debug/*" \
+    -not -path "./cmake-target-build-debug/*" \
+    -exec uncrustify -c .uncrustify.cfg --replace --no-backup {} \;
+
+# Check if there are any changes after formatting
+if [[ -n $(git status --porcelain) ]]; then
+    echo "Code formatting changes detected!"
+    echo "Files have been automatically formatted with uncrustify."
+    
+    # Stage the formatted changes
+    git add .
+    
+    echo "Formatted files have been staged for commit."
+    echo "Proceeding with commit..."
+else
+    echo "No formatting changes needed - code is already properly formatted."
+fi
+
+# Allow the commit to proceed
+exit 0

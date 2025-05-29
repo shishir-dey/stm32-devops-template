@@ -1,4 +1,4 @@
-# stm32-devops-template
+# STM32 DevOps Template
 
 ## Build Status
 [![CMake](https://github.com/shishir-dey/stm32-devops-template/actions/workflows/cmake.yml/badge.svg)](https://github.com/shishir-dey/stm32-devops-template/actions/workflows/cmake.yml)
