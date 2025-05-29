@@ -1,17 +1,14 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include "common_types.h"
+
 struct _Node {
     void* data;
     struct _Node* next;
 };
 
 typedef struct _Node node_t;
-
-typedef enum {
-    SUCCESS,
-    FAILURE
-} status_t;
 
 /**
  * @brief Initializes the linked list with an initial node.
