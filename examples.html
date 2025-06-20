@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage Examples &mdash; STM32 DevOps Template v1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76e2d817"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing Framework" href="testing.html" />
+    <link rel="prev" title="Function Reference" href="api/functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            STM32 DevOps Template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#regular-queue-example">Regular Queue Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#circular-queue-example">Circular Queue Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#priority-queue-example">Priority Queue Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linked-list-example">Linked List Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration-with-stm32">Integration with STM32</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">STM32 DevOps Template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage Examples</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/shishir-dey/stm32-devops-template/blob/main//docs/examples.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-examples">
+<h1>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h1>
+<p>This section provides practical examples of using each data structure in the STM32 DevOps Template.</p>
+<section id="regular-queue-example">
+<h2>Regular Queue Example<a class="headerlink" href="#regular-queue-example" title="Link to this heading"></a></h2>
+<p>The regular queue implements First-In-First-Out (FIFO) behavior, perfect for task scheduling and buffer management.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;data/queue.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">queue_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">queue_t</span><span class="w"> </span><span class="n">my_queue</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">task1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Process sensor data&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">task2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Update display&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">task3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Check buttons&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">dequeued_task</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Initialize the queue</span>
+<span class="w">    </span><span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Add tasks to queue</span>
+<span class="w">    </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">,</span><span class="w"> </span><span class="n">task1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">,</span><span class="w"> </span><span class="n">task2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">,</span><span class="w"> </span><span class="n">task3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Process tasks in FIFO order</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">queue_is_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dequeued_task</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Process the task</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Processing: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dequeued_task</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Use Cases:</strong>
+- UART receive buffer
+- Command processing queue
+- Event handling system</p>
+</section>
+<section id="circular-queue-example">
+<h2>Circular Queue Example<a class="headerlink" href="#circular-queue-example" title="Link to this heading"></a></h2>
+<p>The circular queue (ring buffer) is ideal for streaming data and fixed-size buffers with wrap-around behavior.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;data/circular_queue.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">circular_queue_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">circular_queue_t</span><span class="w"> </span><span class="n">sensor_buffer</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sensor_readings</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">};</span>
+<span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">reading</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Initialize the circular queue</span>
+<span class="w">    </span><span class="n">circular_queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor_buffer</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Fill buffer with sensor readings</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">circular_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sensor_readings</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Process some readings (makes space)</span>
+<span class="w">    </span><span class="n">circular_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor_buffer</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">reading</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Processed reading: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">reading</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Add new reading (demonstrates wrap-around)</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">new_reading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span>
+<span class="w">    </span><span class="n">circular_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">new_reading</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Process remaining readings</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">circular_queue_is_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor_buffer</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">circular_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sensor_buffer</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">reading</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Reading: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">reading</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Use Cases:</strong>
+- Audio streaming buffers
+- Sensor data sampling
+- Communication protocol buffers</p>
+</section>
+<section id="priority-queue-example">
+<h2>Priority Queue Example<a class="headerlink" href="#priority-queue-example" title="Link to this heading"></a></h2>
+<p>The priority queue processes items based on priority rather than insertion order, using a binary max-heap.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;data/priority_queue.h&quot;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">urgency</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">system_task_t</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">priority_queue_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">priority_queue_t</span><span class="w"> </span><span class="n">task_scheduler</span><span class="p">;</span>
+<span class="w">    </span><span class="n">system_task_t</span><span class="w"> </span><span class="n">task1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Update display&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="w">    </span><span class="n">system_task_t</span><span class="w"> </span><span class="n">task2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Handle interrupt&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">};</span>
+<span class="w">    </span><span class="n">system_task_t</span><span class="w"> </span><span class="n">task3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Read sensors&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+<span class="w">    </span><span class="n">system_task_t</span><span class="w"> </span><span class="n">task4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Emergency stop&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">system_task_t</span><span class="o">*</span><span class="w"> </span><span class="n">current_task</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Initialize priority queue</span>
+<span class="w">    </span><span class="n">priority_queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Add tasks with different priorities</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">task1</span><span class="p">,</span><span class="w"> </span><span class="n">task1</span><span class="p">.</span><span class="n">urgency</span><span class="p">);</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">task2</span><span class="p">,</span><span class="w"> </span><span class="n">task2</span><span class="p">.</span><span class="n">urgency</span><span class="p">);</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">task3</span><span class="p">,</span><span class="w"> </span><span class="n">task3</span><span class="p">.</span><span class="n">urgency</span><span class="p">);</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">task4</span><span class="p">,</span><span class="w"> </span><span class="n">task4</span><span class="p">.</span><span class="n">urgency</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Process tasks in priority order (highest first)</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">priority_queue_is_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">priority_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_scheduler</span><span class="p">,</span>
+<span class="w">                             </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">current_task</span><span class="p">,</span>
+<span class="w">                             </span><span class="o">&amp;</span><span class="n">priority</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Executing [Priority %d]: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="n">current_task</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Use Cases:</strong>
+- Interrupt handling prioritization
+- Real-time task scheduling
+- Error handling (critical errors first)</p>
+</section>
+<section id="linked-list-example">
+<h2>Linked List Example<a class="headerlink" href="#linked-list-example" title="Link to this heading"></a></h2>
+<p>The linked list provides dynamic insertion and deletion capabilities with manual node management.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;data/linked_list.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">linked_list_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">node_t</span><span class="w"> </span><span class="n">head_node</span><span class="p">,</span><span class="w"> </span><span class="n">node1</span><span class="p">,</span><span class="w"> </span><span class="n">node2</span><span class="p">,</span><span class="w"> </span><span class="n">node3</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;First message&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Second message&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Third message&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Initialize list with head node</span>
+<span class="w">    </span><span class="n">ll_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">head_node</span><span class="p">);</span>
+<span class="w">    </span><span class="n">head_node</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Head node&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Prepare nodes</span>
+<span class="w">    </span><span class="n">node1</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">node1</span><span class="p">.</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">node2</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">node2</span><span class="p">.</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">node3</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msg3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">node3</span><span class="p">.</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Insert at head (becomes new first)</span>
+<span class="w">    </span><span class="n">ll_insert_at_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ll_insert_at_head</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Insert at tail (becomes last)</span>
+<span class="w">    </span><span class="n">ll_insert_at_tail</span><span class="p">(</span><span class="o">&amp;</span><span class="n">node3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// List order is now: node2 -&gt; node1 -&gt; head_node -&gt; node3</span>
+
+<span class="w">    </span><span class="c1">// Remove from head and tail</span>
+<span class="w">    </span><span class="n">ll_delete_at_head</span><span class="p">();</span><span class="w">  </span><span class="c1">// Removes node2</span>
+<span class="w">    </span><span class="n">ll_delete_at_tail</span><span class="p">();</span><span class="w">  </span><span class="c1">// Removes node3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Use Cases:</strong>
+- Configuration parameter lists
+- Event callback chains
+- Dynamic task management</p>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h2>
+<p>All data structures use consistent error handling with return codes:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;data/common_types.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">error_handling_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">queue_t</span><span class="w"> </span><span class="n">my_queue</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test data&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">retrieved_data</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Always check return values</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Handle initialization error</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check for full queue before enqueuing</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">queue_is_full</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Handle enqueue error</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Check for empty queue before dequeuing</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">queue_is_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">my_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">retrieved_data</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Successfully retrieved data</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Retrieved: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">retrieved_data</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Best Practices:</strong>
+- Always check return values
+- Validate queue state before operations
+- Handle NULL pointer cases
+- Use size/empty/full functions for state checking</p>
+</section>
+<section id="integration-with-stm32">
+<h2>Integration with STM32<a class="headerlink" href="#integration-with-stm32" title="Link to this heading"></a></h2>
+<p>Example integration with STM32 peripherals:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// UART receive buffer using circular queue</span>
+<span class="n">circular_queue_t</span><span class="w"> </span><span class="n">uart_rx_buffer</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">uart_data_buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">UART_IRQHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UART_RX_READY</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">received_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UART_READ_DATA</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">circular_queue_is_full</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uart_rx_buffer</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">circular_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uart_rx_buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">received_byte</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Task scheduler using priority queue</span>
+<span class="n">priority_queue_t</span><span class="w"> </span><span class="n">task_queue</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">schedule_task</span><span class="p">(</span><span class="n">task_function_t</span><span class="w"> </span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">priority_queue_is_full</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_queue</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_queue</span><span class="p">,</span><span class="w"> </span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">main_scheduler_loop</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">task_function_t</span><span class="w"> </span><span class="n">current_task</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">priority_queue_is_empty</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_queue</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">priority_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">task_queue</span><span class="p">,</span>
+<span class="w">                                 </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">current_task</span><span class="p">,</span>
+<span class="w">                                 </span><span class="o">&amp;</span><span class="n">priority</span><span class="p">);</span>
+<span class="w">            </span><span class="n">current_task</span><span class="p">();</span><span class="w">  </span><span class="c1">// Execute task</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">__WFI</span><span class="p">();</span><span class="w">  </span><span class="c1">// Wait for interrupt</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api/functions.html" class="btn btn-neutral float-left" title="Function Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="testing.html" class="btn btn-neutral float-right" title="Testing Framework" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shishir Dey.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

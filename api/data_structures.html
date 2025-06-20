@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Structures API &mdash; STM32 DevOps Template v1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=76e2d817"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function Reference" href="functions.html" />
+    <link rel="prev" title="API Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            STM32 DevOps Template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Structures API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-types">Common Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48status_t"><code class="docutils literal notranslate"><span class="pre">status_t</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#queue-api">Queue API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regular-fifo-queue-implementation">Regular FIFO Queue Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#circular-queue-api">Circular Queue API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ring-buffer-implementation">Ring Buffer Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#priority-queue-api">Priority Queue API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#binary-max-heap-implementation">Binary Max-Heap Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linked-list-api">Linked List API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#traditional-linked-list-implementation">Traditional Linked List Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Function Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-structures-overview">Data Structures Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#implementation-files">Implementation Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">STM32 DevOps Template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">Data Structures API</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/shishir-dey/stm32-devops-template/blob/main//docs/api/data_structures.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-structures-api">
+<h1>Data Structures API<a class="headerlink" href="#data-structures-api" title="Link to this heading"></a></h1>
+<p>This section provides detailed API documentation for all data structures implemented in the STM32 DevOps Template.</p>
+<section id="common-types">
+<h2>Common Types<a class="headerlink" href="#common-types" title="Link to this heading"></a></h2>
+<p>All data structures use common return types and constants defined in <cite>common_types.h</cite>:</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv48status_t">
+<span id="_CPPv38status_t"></span><span id="_CPPv28status_t"></span><span class="target" id="group__CommonTypes_1gaf9bff8ff1154a04a899276af806b8586"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">status_t</span></span></span><a class="headerlink" href="#_CPPv48status_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Status enumeration for data structure operations. </p>
+<p>This enumeration provides a standardized way to indicate the success or failure of data structure operations across all implementations in the project.</p>
+<p><dl class="simple">
+<dt><strong>Usage Examples:</strong></dt><dd><p><ul class="simple">
+<li><p>Function return values to indicate operation status</p></li>
+<li><p>Error checking in calling code</p></li>
+<li><p>Status reporting in embedded system diagnostics</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All data structure functions use this enum for consistent error handling </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Always check return values when calling data structure functions </p>
+</div>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8status_t7SUCCESSE">
+<span id="_CPPv3N8status_t7SUCCESSE"></span><span id="_CPPv2N8status_t7SUCCESSE"></span><span class="target" id="group__CommonTypes_1ggaf9bff8ff1154a04a899276af806b8586ac7f69f7c9e5aea9b8f54cf02870e2bf8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SUCCESS</span></span></span><a class="headerlink" href="#_CPPv4N8status_t7SUCCESSE" title="Link to this definition"></a><br /></dt>
+<dd><p>Operation completed successfully. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8status_t7FAILUREE">
+<span id="_CPPv3N8status_t7FAILUREE"></span><span id="_CPPv2N8status_t7FAILUREE"></span><span class="target" id="group__CommonTypes_1ggaf9bff8ff1154a04a899276af806b8586aa5571864412c8275a2e18a931fddcaa6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FAILURE</span></span></span><a class="headerlink" href="#_CPPv4N8status_t7FAILUREE" title="Link to this definition"></a><br /></dt>
+<dd><p>Operation failed (e.g., queue full, empty, or null pointer) </p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygendefine: Cannot find define “SUCCESS” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygendefine: Cannot find define “FAILURE” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+</section>
+<section id="queue-api">
+<h2>Queue API<a class="headerlink" href="#queue-api" title="Link to this heading"></a></h2>
+<section id="regular-fifo-queue-implementation">
+<h3>Regular FIFO Queue Implementation<a class="headerlink" href="#regular-fifo-queue-implementation" title="Link to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv47queue_t">
+<span id="_CPPv37queue_t"></span><span id="_CPPv27queue_t"></span><span id="queue_t"></span><span class="target" id="structqueue__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">queue_t</span></span></span><a class="headerlink" href="#_CPPv47queue_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Queue data structure. </p>
+<p>This structure maintains the queue state including the data array, front and rear pointers, and element count. The implementation uses circular indexing for efficient memory utilization.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>data[]: Array to store queue elements</p></li>
+<li><p>front: Index of the first element to be dequeued</p></li>
+<li><p>rear: Index where the next element will be enqueued</p></li>
+<li><p>count: Current number of elements in the queue</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All members should be considered private and accessed only through API functions </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct modification of structure members may lead to undefined behavior </p>
+</div>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_init” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_enqueue” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_dequeue” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_peek” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_is_empty” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_is_full” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “queue_size” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+</section>
+</section>
+<section id="circular-queue-api">
+<h2>Circular Queue API<a class="headerlink" href="#circular-queue-api" title="Link to this heading"></a></h2>
+<section id="ring-buffer-implementation">
+<h3>Ring Buffer Implementation<a class="headerlink" href="#ring-buffer-implementation" title="Link to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416circular_queue_t">
+<span id="_CPPv316circular_queue_t"></span><span id="_CPPv216circular_queue_t"></span><span id="circular_queue_t"></span><span class="target" id="structcircular__queue__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">circular_queue_t</span></span></span><a class="headerlink" href="#_CPPv416circular_queue_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Circular queue data structure. </p>
+<p>This structure maintains the circular queue state including the data array, front and rear pointers, and a full indicator. The circular nature is achieved through modulo arithmetic on the pointers.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>data[]: Array to store queue elements</p></li>
+<li><p>front: Index of the first element to be dequeued</p></li>
+<li><p>rear: Index where the next element will be enqueued</p></li>
+<li><p>is_full: Flag to distinguish between full and empty states</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Full vs Empty Detection:</strong></dt><dd><p>Since front == rear can mean both empty and full, the is_full flag is used to distinguish between these states.</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All members should be considered private and accessed only through API functions </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct modification of structure members may lead to undefined behavior </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t4dataE">
+<span id="_CPPv3N16circular_queue_t4dataE"></span><span id="_CPPv2N16circular_queue_t4dataE"></span><span id="circular_queue_t::data__voidPA"></span><span class="target" id="structcircular__queue__t_1abb0eba54d51115677bafd41cd000d0e5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">CIRCULAR_QUEUE_MAX_SIZE</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N16circular_queue_t4dataE" title="Link to this definition"></a><br /></dt>
+<dd><p>Array of void pointers to store any data type. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t5frontE">
+<span id="_CPPv3N16circular_queue_t5frontE"></span><span id="_CPPv2N16circular_queue_t5frontE"></span><span id="circular_queue_t::front__i"></span><span class="target" id="structcircular__queue__t_1a17587e2d6d985681c56192e35f9c81f4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">front</span></span></span><a class="headerlink" href="#_CPPv4N16circular_queue_t5frontE" title="Link to this definition"></a><br /></dt>
+<dd><p>Index of the front element (next to dequeue) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t4rearE">
+<span id="_CPPv3N16circular_queue_t4rearE"></span><span id="_CPPv2N16circular_queue_t4rearE"></span><span id="circular_queue_t::rear__i"></span><span class="target" id="structcircular__queue__t_1a653437a88db23764a74aac27d655864b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rear</span></span></span><a class="headerlink" href="#_CPPv4N16circular_queue_t4rearE" title="Link to this definition"></a><br /></dt>
+<dd><p>Index of the rear position (next enqueue location) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t7is_fullE">
+<span id="_CPPv3N16circular_queue_t7is_fullE"></span><span id="_CPPv2N16circular_queue_t7is_fullE"></span><span id="circular_queue_t::is_full__i"></span><span class="target" id="structcircular__queue__t_1abf97ff185d40b900b19dcbf57f862085"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_full</span></span></span><a class="headerlink" href="#_CPPv4N16circular_queue_t7is_fullE" title="Link to this definition"></a><br /></dt>
+<dd><p>Flag indicating if the queue is full (1) or not (0) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_init” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_enqueue” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_dequeue” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_peek” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_is_empty” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_is_full” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “circular_queue_size” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+</section>
+</section>
+<section id="priority-queue-api">
+<h2>Priority Queue API<a class="headerlink" href="#priority-queue-api" title="Link to this heading"></a></h2>
+<section id="binary-max-heap-implementation">
+<h3>Binary Max-Heap Implementation<a class="headerlink" href="#binary-max-heap-implementation" title="Link to this heading"></a></h3>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv424priority_queue_element_t">
+<span id="_CPPv324priority_queue_element_t"></span><span id="_CPPv224priority_queue_element_t"></span><span id="priority_queue_element_t"></span><span class="target" id="structpriority__queue__element__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">priority_queue_element_t</span></span></span><a class="headerlink" href="#_CPPv424priority_queue_element_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Priority queue element structure. </p>
+<p>Each element in the priority queue contains both data and its associated priority value. This allows the heap to maintain proper ordering.</p>
+<p><dl class="simple">
+<dt><strong>Priority Semantics:</strong></dt><dd><p>Higher numerical values indicate higher priority. For example:<ul class="simple">
+<li><p>Priority 10 will be processed before priority 5</p></li>
+<li><p>Priority 1 will be processed last among priorities 1, 5, 10</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both data and priority are stored together for efficiency </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Priority values should be chosen carefully to avoid overflow </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N24priority_queue_element_t4dataE">
+<span id="_CPPv3N24priority_queue_element_t4dataE"></span><span id="_CPPv2N24priority_queue_element_t4dataE"></span><span id="priority_queue_element_t::data__voidP"></span><span class="target" id="structpriority__queue__element__t_1a4a15f8bbcb8e87c3bb1fb5d92b9ef7b2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N24priority_queue_element_t4dataE" title="Link to this definition"></a><br /></dt>
+<dd><p>Pointer to the actual data element. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N24priority_queue_element_t8priorityE">
+<span id="_CPPv3N24priority_queue_element_t8priorityE"></span><span id="_CPPv2N24priority_queue_element_t8priorityE"></span><span id="priority_queue_element_t::priority__i"></span><span class="target" id="structpriority__queue__element__t_1a0295d10111f3e8eec9d1165995829c6c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">priority</span></span></span><a class="headerlink" href="#_CPPv4N24priority_queue_element_t8priorityE" title="Link to this definition"></a><br /></dt>
+<dd><p>Priority value (higher numbers = higher priority) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416priority_queue_t">
+<span id="_CPPv316priority_queue_t"></span><span id="_CPPv216priority_queue_t"></span><span id="priority_queue_t"></span><span class="target" id="structpriority__queue__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">priority_queue_t</span></span></span><a class="headerlink" href="#_CPPv416priority_queue_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Priority queue data structure. </p>
+<p>This structure maintains the priority queue state including the heap array and current size. The heap property is maintained through specialized insertion and deletion algorithms.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>elements[]: Array implementing the binary heap</p></li>
+<li><p>size: Current number of elements in the heap</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Heap Property:</strong></dt><dd><p>For any element at index i: elements[i].priority &gt;= elements[2*i+1].priority (left child) elements[i].priority &gt;= elements[2*i+2].priority (right child)</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All members should be considered private and accessed only through API functions </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct modification of structure members will break heap property </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16priority_queue_t8elementsE">
+<span id="_CPPv3N16priority_queue_t8elementsE"></span><span id="_CPPv2N16priority_queue_t8elementsE"></span><span id="priority_queue_t::elements__priority_queue_element_tA"></span><span class="target" id="structpriority__queue__t_1a6d9658ffd0868e95c9d5a077a2f905ce"></span><a class="reference internal" href="#_CPPv424priority_queue_element_t" title="priority_queue_element_t"><span class="n"><span class="pre">priority_queue_element_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elements</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">PRIORITY_QUEUE_MAX_SIZE</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N16priority_queue_t8elementsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Heap array of elements. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16priority_queue_t4sizeE">
+<span id="_CPPv3N16priority_queue_t4sizeE"></span><span id="_CPPv2N16priority_queue_t4sizeE"></span><span id="priority_queue_t::size__i"></span><span class="target" id="structpriority__queue__t_1aad9b5511b8018cb9efa62f89dbc0bde1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><a class="headerlink" href="#_CPPv4N16priority_queue_t4sizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Current number of elements. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_init” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_enqueue” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_dequeue” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_peek” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_is_empty” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_is_full” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “priority_queue_size” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+</section>
+</section>
+<section id="linked-list-api">
+<h2>Linked List API<a class="headerlink" href="#linked-list-api" title="Link to this heading"></a></h2>
+<section id="traditional-linked-list-implementation">
+<h3>Traditional Linked List Implementation<a class="headerlink" href="#traditional-linked-list-implementation" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenstruct: Cannot find class “node_t” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “ll_init” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “ll_insert_at_head” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “ll_insert_at_tail” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “ll_delete_at_head” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “ll_delete_at_tail” in doxygen xml output for project “STM32DevOpsTemplate” from directory: ./doxygen/xml</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions.html" class="btn btn-neutral float-right" title="Function Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shishir Dey.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

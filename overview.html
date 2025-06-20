@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Overview &mdash; STM32 DevOps Template v1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76e2d817"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api/index.html" />
+    <link rel="prev" title="STM32 DevOps Template" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            STM32 DevOps Template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-layer">Data Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#devops-practices">DevOps Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing-strategy">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-system">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#target-platform">Target Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-cases">Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices-demonstrated">Best Practices Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">STM32 DevOps Template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Project Overview</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/shishir-dey/stm32-devops-template/blob/main//docs/overview.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="project-overview">
+<h1>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h1>
+<p>The STM32 DevOps Template demonstrates modern software development practices applied to embedded systems development, specifically targeting STM32 microcontrollers.</p>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h2>
+<p>The project follows a modular architecture with clear separation of concerns:</p>
+<section id="data-layer">
+<h3>Data Layer<a class="headerlink" href="#data-layer" title="Link to this heading"></a></h3>
+<p>The data layer provides foundational data structures optimized for embedded systems:</p>
+<ul class="simple">
+<li><p><strong>Static Memory Allocation</strong>: All data structures use pre-allocated arrays to avoid heap fragmentation</p></li>
+<li><p><strong>Efficient Algorithms</strong>: O(1) operations for queue operations, O(log n) for priority queue</p></li>
+<li><p><strong>Error Handling</strong>: Comprehensive return codes and input validation</p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h3>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Regular Queue (FIFO)</strong></dt><dd><p>Uses circular array indexing with front/rear pointers and count tracking for efficient memory usage.</p>
+</dd>
+<dt><strong>Circular Queue (Ring Buffer)</strong></dt><dd><p>Implements wrap-around behavior using modulo arithmetic, ideal for streaming data.</p>
+</dd>
+<dt><strong>Priority Queue (Max-Heap)</strong></dt><dd><p>Binary heap implementation with heapify-up/down algorithms for priority-based processing.</p>
+</dd>
+<dt><strong>Linked List</strong></dt><dd><p>Traditional linked list with global head pointer for backward compatibility.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="devops-practices">
+<h2>DevOps Practices<a class="headerlink" href="#devops-practices" title="Link to this heading"></a></h2>
+<section id="testing-strategy">
+<h3>Testing Strategy<a class="headerlink" href="#testing-strategy" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Unit Testing</strong>: Unity framework for comprehensive test coverage</p></li>
+<li><p><strong>Cross-Platform Testing</strong>: Host-based testing for rapid development cycles</p></li>
+<li><p><strong>Automated Testing</strong>: CI/CD integration with GitHub Actions</p></li>
+</ul>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>API Documentation</strong>: Sphinx + Breathe for beautiful, searchable documentation</p></li>
+<li><p><strong>Code Comments</strong>: Comprehensive Doxygen-style comments</p></li>
+<li><p><strong>Examples</strong>: Working demonstrations of all data structures</p></li>
+</ul>
+</section>
+<section id="build-system">
+<h3>Build System<a class="headerlink" href="#build-system" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>CMake</strong>: Cross-platform build system</p></li>
+<li><p><strong>Toolchain Support</strong>: ARM GCC toolchain for embedded targets</p></li>
+<li><p><strong>Configuration Management</strong>: Separate build configurations for host/target</p></li>
+</ul>
+</section>
+<section id="continuous-integration">
+<h3>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Automated Builds</strong>: GitHub Actions for both host and target builds</p></li>
+<li><p><strong>Test Execution</strong>: Automatic test running on pull requests</p></li>
+<li><p><strong>Documentation Deployment</strong>: Automated documentation publishing to GitHub Pages</p></li>
+</ul>
+</section>
+</section>
+<section id="target-platform">
+<h2>Target Platform<a class="headerlink" href="#target-platform" title="Link to this heading"></a></h2>
+<p><strong>Primary Target</strong>: STM32F407 Discovery Board</p>
+<ul class="simple">
+<li><p><strong>CPU</strong>: ARM Cortex-M4 &#64; 168MHz</p></li>
+<li><p><strong>Memory</strong>: 1MB Flash, 192KB RAM</p></li>
+<li><p><strong>Peripherals</strong>: Rich peripheral set for expansion</p></li>
+</ul>
+<p><strong>Host Platform</strong>: Any system supporting GCC</p>
+<ul class="simple">
+<li><p><strong>Purpose</strong>: Unit testing and development</p></li>
+<li><p><strong>Benefits</strong>: Faster iteration cycles, debugging capabilities</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h2>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>This template is ideal for:</p>
+<ul class="simple">
+<li><p><strong>Learning</strong>: Understanding embedded DevOps practices</p></li>
+<li><p><strong>Prototyping</strong>: Quick start for STM32 projects</p></li>
+<li><p><strong>Production</strong>: Scalable foundation for commercial products</p></li>
+<li><p><strong>Education</strong>: Teaching modern embedded development practices</p></li>
+</ul>
+</section>
+<section id="best-practices-demonstrated">
+<h2>Best Practices Demonstrated<a class="headerlink" href="#best-practices-demonstrated" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Static Analysis</strong>: Code quality tools integration</p></li>
+<li><p><strong>Memory Safety</strong>: No dynamic allocation, bounds checking</p></li>
+<li><p><strong>Portability</strong>: Clean separation between platform-specific and generic code</p></li>
+<li><p><strong>Maintainability</strong>: Clear code structure and comprehensive documentation</p></li>
+<li><p><strong>Reliability</strong>: Extensive testing and error handling</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="STM32 DevOps Template" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shishir Dey.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

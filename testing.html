@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testing Framework &mdash; STM32 DevOps Template v1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76e2d817"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Usage Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            STM32 DevOps Template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Usage Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unity-testing-framework">Unity Testing Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-structure">Test Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-organization">Test Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-coverage">Test Coverage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#regular-queue-tests">Regular Queue Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#circular-queue-tests">Circular Queue Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#priority-queue-tests">Priority Queue Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test-assertions">Test Assertions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-testing">Memory Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-driven-development">Test-Driven Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-failed-tests">Debugging Failed Tests</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">STM32 DevOps Template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Testing Framework</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/shishir-dey/stm32-devops-template/blob/main//docs/testing.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="testing-framework">
+<h1>Testing Framework<a class="headerlink" href="#testing-framework" title="Link to this heading"></a></h1>
+<p>The STM32 DevOps Template uses the Unity testing framework to ensure code quality and reliability through comprehensive unit testing.</p>
+<section id="unity-testing-framework">
+<h2>Unity Testing Framework<a class="headerlink" href="#unity-testing-framework" title="Link to this heading"></a></h2>
+<p>Unity is a lightweight, C-based unit testing framework designed for embedded systems. It provides:</p>
+<ul class="simple">
+<li><p><strong>Minimal Dependencies</strong>: Pure C implementation with no external dependencies</p></li>
+<li><p><strong>Cross-Platform</strong>: Runs on both host systems and embedded targets</p></li>
+<li><p><strong>Rich Assertions</strong>: Comprehensive set of assertion macros</p></li>
+<li><p><strong>Test Organization</strong>: Structured test suites and runners</p></li>
+</ul>
+</section>
+<section id="test-structure">
+<h2>Test Structure<a class="headerlink" href="#test-structure" title="Link to this heading"></a></h2>
+<p>Each data structure has its own dedicated test file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>test/
+├── test_queue.c           # Regular queue tests
+├── test_circular_queue.c  # Circular queue tests
+├── test_priority_queue.c  # Priority queue tests
+└── test_linked_list.c     # Linked list tests
+</pre></div>
+</div>
+<section id="test-organization">
+<h3>Test Organization<a class="headerlink" href="#test-organization" title="Link to this heading"></a></h3>
+<p>Each test file follows a consistent structure:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../lib/Unity/src/unity.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;../src/data/queue.h&quot;</span>
+
+<span class="c1">// Global test variables</span>
+<span class="n">queue_t</span><span class="w"> </span><span class="n">test_queue</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Initialize before each test</span>
+<span class="w">    </span><span class="n">queue_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Cleanup after each test</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">resetTest</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tearDown</span><span class="p">();</span>
+<span class="w">    </span><span class="n">setUp</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Individual test functions</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test_queue_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Test implementation</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">UNITY_BEGIN</span><span class="p">();</span>
+<span class="w">    </span><span class="n">RUN_TEST</span><span class="p">(</span><span class="n">test_queue_init</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ... more tests</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UNITY_END</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-tests">
+<h2>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading"></a></h2>
+<p><strong>Host-Based Testing (Recommended for Development)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure for host testing</span>
+mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>-DHOST<span class="o">=</span>ON<span class="w"> </span>..
+
+<span class="c1"># Build all tests</span>
+make
+
+<span class="c1"># Run all tests</span>
+ctest
+
+<span class="c1"># Run specific test</span>
+./test_queue
+
+<span class="c1"># Run tests with verbose output</span>
+ctest<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p><strong>Manual Test Execution</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run individual test files</span>
+<span class="nb">cd</span><span class="w"> </span>build
+./test_queue
+./test_circular_queue
+./test_priority_queue
+./test_linked_list
+</pre></div>
+</div>
+</section>
+<section id="test-coverage">
+<h2>Test Coverage<a class="headerlink" href="#test-coverage" title="Link to this heading"></a></h2>
+<p>The test suite provides comprehensive coverage for all implemented functionality:</p>
+<section id="regular-queue-tests">
+<h3>Regular Queue Tests<a class="headerlink" href="#regular-queue-tests" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Initialization and state validation</p></li>
+<li><p>Enqueue/dequeue operations</p></li>
+<li><p>FIFO order verification</p></li>
+<li><p>Boundary conditions (empty/full)</p></li>
+<li><p>Error handling for invalid inputs</p></li>
+<li><p>Queue size tracking</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_queue_dequeue_fifo_order</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;first&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;second&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;third&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">dequeued_data</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Verify FIFO order</span>
+<span class="w">    </span><span class="n">queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dequeued_data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL_STRING</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="w"> </span><span class="n">dequeued_data</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dequeued_data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL_STRING</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span><span class="w"> </span><span class="n">dequeued_data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="circular-queue-tests">
+<h3>Circular Queue Tests<a class="headerlink" href="#circular-queue-tests" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Wrap-around behavior validation</p></li>
+<li><p>Mixed enqueue/dequeue operations</p></li>
+<li><p>Full buffer handling</p></li>
+<li><p>Size calculation accuracy</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_circular_queue_wrap_around</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Fill partially, remove some, add more</span>
+<span class="w">    </span><span class="n">circular_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">circular_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">circular_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dequeued_data</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// This should wrap around in the buffer</span>
+<span class="w">    </span><span class="n">circular_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Verify correct order maintained</span>
+<span class="w">    </span><span class="n">circular_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dequeued_data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL_STRING</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span><span class="w"> </span><span class="n">dequeued_data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="priority-queue-tests">
+<h3>Priority Queue Tests<a class="headerlink" href="#priority-queue-tests" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Priority-based ordering</p></li>
+<li><p>Binary heap property maintenance</p></li>
+<li><p>Dynamic priority operations</p></li>
+<li><p>Edge cases with equal priorities</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_priority_queue_dequeue_priority_order</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Add in mixed priority order</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">low_data</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">high_data</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">priority_queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">medium_data</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Should dequeue highest priority first</span>
+<span class="w">    </span><span class="n">priority_queue_dequeue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">priority</span><span class="p">);</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL_STRING</span><span class="p">(</span><span class="n">high_data</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="test-assertions">
+<h2>Test Assertions<a class="headerlink" href="#test-assertions" title="Link to this heading"></a></h2>
+<p>Unity provides a rich set of assertion macros:</p>
+<p><strong>Basic Assertions</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TEST_ASSERT_TRUE</span><span class="p">(</span><span class="n">condition</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_FALSE</span><span class="p">(</span><span class="n">condition</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_EQUAL</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_NOT_EQUAL</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Pointer Assertions</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TEST_ASSERT_NULL</span><span class="p">(</span><span class="n">pointer</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_NOT_NULL</span><span class="p">(</span><span class="n">pointer</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_EQUAL_PTR</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>String Assertions</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TEST_ASSERT_EQUAL_STRING</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_EQUAL_STRING_LEN</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Numeric Assertions</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TEST_ASSERT_EQUAL_INT</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_EQUAL_UINT</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+<span class="n">TEST_ASSERT_GREATER_THAN</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h2>
+<p>Tests are automatically executed in the CI/CD pipeline:</p>
+<p><strong>GitHub Actions Integration</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and test</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">mkdir build &amp;&amp; cd build</span>
+<span class="w">    </span><span class="no">cmake -DHOST=ON ..</span>
+<span class="w">    </span><span class="no">make</span>
+<span class="w">    </span><span class="no">ctest --output-on-failure</span>
+</pre></div>
+</div>
+<p><strong>Test Results</strong></p>
+<ul class="simple">
+<li><p>All tests must pass for pull request approval</p></li>
+<li><p>Test results are reported in GitHub Actions logs</p></li>
+<li><p>Coverage reports help identify untested code paths</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>Test Design Principles</strong></p>
+<ul class="simple">
+<li><p><strong>Isolation</strong>: Each test is independent and can run in any order</p></li>
+<li><p><strong>Repeatability</strong>: Tests produce consistent results across runs</p></li>
+<li><p><strong>Clarity</strong>: Test names clearly describe what is being tested</p></li>
+<li><p><strong>Coverage</strong>: All public APIs and edge cases are tested</p></li>
+</ul>
+<p><strong>Test Data Management</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use consistent test data</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">test_data_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test_string_1&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">test_data_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test_string_2&quot;</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">test_priority_high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">test_priority_low</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Error Condition Testing</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_queue_enqueue_full</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Fill queue to capacity</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">QUEUE_MAX_SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">TEST_ASSERT_EQUAL</span><span class="p">(</span><span class="n">SUCCESS</span><span class="p">,</span><span class="w"> </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Next enqueue should fail</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL</span><span class="p">(</span><span class="n">FAILURE</span><span class="p">,</span><span class="w"> </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-testing">
+<h2>Memory Testing<a class="headerlink" href="#memory-testing" title="Link to this heading"></a></h2>
+<p>Since the project uses static allocation, memory testing focuses on:</p>
+<ul class="simple">
+<li><p><strong>Bounds Checking</strong>: Ensure array access stays within bounds</p></li>
+<li><p><strong>State Consistency</strong>: Verify internal state remains valid</p></li>
+<li><p><strong>Resource Management</strong>: Check for proper initialization/cleanup</p></li>
+</ul>
+<p><strong>Static Analysis Integration</strong></p>
+<p>The project can be integrated with static analysis tools:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example with Cppcheck</span>
+cppcheck<span class="w"> </span>--enable<span class="o">=</span>all<span class="w"> </span>--inconclusive<span class="w"> </span>src/
+
+<span class="c1"># Example with PC-lint</span>
+lint-nt<span class="w"> </span>-i<span class="s2">&quot;lib/Unity/src&quot;</span><span class="w"> </span>src/*.c
+</pre></div>
+</div>
+</section>
+<section id="test-driven-development">
+<h2>Test-Driven Development<a class="headerlink" href="#test-driven-development" title="Link to this heading"></a></h2>
+<p>The project demonstrates TDD principles:</p>
+<ol class="arabic simple">
+<li><p><strong>Write Test First</strong>: Define expected behavior through tests</p></li>
+<li><p><strong>Implement Minimally</strong>: Write just enough code to pass the test</p></li>
+<li><p><strong>Refactor</strong>: Improve code while maintaining test coverage</p></li>
+</ol>
+<p><strong>Example TDD Workflow</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 1. Write failing test</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test_new_feature</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL</span><span class="p">(</span><span class="n">SUCCESS</span><span class="p">,</span><span class="w"> </span><span class="n">new_feature_function</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// 2. Implement minimal functionality</span>
+<span class="n">status_t</span><span class="w"> </span><span class="nf">new_feature_function</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">SUCCESS</span><span class="p">;</span><span class="w">  </span><span class="c1">// Minimal implementation</span>
+<span class="p">}</span>
+
+<span class="c1">// 3. Refactor with confidence</span>
+<span class="n">status_t</span><span class="w"> </span><span class="nf">new_feature_function</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Full implementation with error checking</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">validate_input</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">FAILURE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">perform_operation</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="debugging-failed-tests">
+<h2>Debugging Failed Tests<a class="headerlink" href="#debugging-failed-tests" title="Link to this heading"></a></h2>
+<p><strong>Common Debugging Techniques</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test_with_debug_output</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Test starting...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Test operation</span>
+<span class="w">    </span><span class="n">status_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue_enqueue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test_queue</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enqueue result: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Assertion with context</span>
+<span class="w">    </span><span class="n">TEST_ASSERT_EQUAL_MESSAGE</span><span class="p">(</span><span class="n">SUCCESS</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Enqueue failed&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Using GDB with Tests</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compile with debug info</span>
+cmake<span class="w"> </span>-DHOST<span class="o">=</span>ON<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>..
+make
+
+<span class="c1"># Debug specific test</span>
+gdb<span class="w"> </span>./test_queue
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">break</span><span class="w"> </span>test_specific_function
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Usage Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shishir Dey.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

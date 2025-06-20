@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; STM32 DevOps Template v1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=76e2d817"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Structures API" href="data_structures.html" />
+    <link rel="prev" title="Project Overview" href="../overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            STM32 DevOps Template
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Project Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html">Data Structures API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Function Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-structures-overview">Data Structures Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#header-files">Header Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv47queue_t"><code class="docutils literal notranslate"><span class="pre">queue_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416circular_queue_t"><code class="docutils literal notranslate"><span class="pre">circular_queue_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv424priority_queue_element_t"><code class="docutils literal notranslate"><span class="pre">priority_queue_element_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416priority_queue_t"><code class="docutils literal notranslate"><span class="pre">priority_queue_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45_Node"><code class="docutils literal notranslate"><span class="pre">_Node</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-files">Implementation Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv413swap_elementsP24priority_queue_element_tP24priority_queue_element_t"><code class="docutils literal notranslate"><span class="pre">swap_elements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410heapify_upP16priority_queue_ti"><code class="docutils literal notranslate"><span class="pre">heapify_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412heapify_downP16priority_queue_ti"><code class="docutils literal notranslate"><span class="pre">heapify_down()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44head"><code class="docutils literal notranslate"><span class="pre">head</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44mainv"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Usage Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Framework</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">STM32 DevOps Template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/shishir-dey/stm32-devops-template/blob/main//docs/api/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>This section contains the complete API reference for all data structures and functions in the STM32 DevOps Template.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_structures.html">Data Structures API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html#common-types">Common Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html#queue-api">Queue API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html#circular-queue-api">Circular Queue API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html#priority-queue-api">Priority Queue API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_structures.html#linked-list-api">Linked List API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Function Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#main-application-functions">Main Application Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#initialization-functions">Initialization Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#enqueue-insert-functions">Enqueue/Insert Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dequeue-remove-functions">Dequeue/Remove Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#peek-functions">Peek Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#state-query-functions">State Query Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#function-categories">Function Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="data-structures-overview">
+<h2>Data Structures Overview<a class="headerlink" href="#data-structures-overview" title="Link to this heading"></a></h2>
+<p>The STM32 DevOps Template provides several efficient data structures designed for embedded systems.</p>
+<section id="header-files">
+<h3>Header Files<a class="headerlink" href="#header-files" title="Link to this heading"></a></h3>
+<p>The following header files contain the complete API definitions:</p>
+<p><strong>Queue Header</strong></p>
+<p>Regular Queue (FIFO) implementation for embedded systems. </p>
+<p>This header provides a First-In-First-Out (FIFO) queue implementation using static memory allocation. The queue is suitable for embedded systems where dynamic memory allocation should be avoided.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Key Features:</strong></dt><dd><p><ul class="simple">
+<li><p>Static memory allocation (no malloc/free)</p></li>
+<li><p>FIFO (First-In-First-Out) behavior</p></li>
+<li><p>Circular array implementation for efficiency</p></li>
+<li><p>Configurable maximum size via QUEUE_MAX_SIZE</p></li>
+<li><p>Thread-safe operations (when used with proper locking)</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Performance Characteristics:</strong></dt><dd><p><ul class="simple">
+<li><p>Enqueue: O(1)</p></li>
+<li><p>Dequeue: O(1)</p></li>
+<li><p>Peek: O(1)</p></li>
+<li><p>Size check: O(1)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Include this header to use the regular queue functionality </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure QUEUE_MAX_SIZE is appropriate for your memory constraints</p>
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv47queue_t">
+<span id="_CPPv37queue_t"></span><span id="_CPPv27queue_t"></span><span id="queue_t"></span><span class="target" id="structqueue__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">queue_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;queue.h&gt;</em></div>
+<p>Queue data structure. </p>
+<p>This structure maintains the queue state including the data array, front and rear pointers, and element count. The implementation uses circular indexing for efficient memory utilization.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>data[]: Array to store queue elements</p></li>
+<li><p>front: Index of the first element to be dequeued</p></li>
+<li><p>rear: Index where the next element will be enqueued</p></li>
+<li><p>count: Current number of elements in the queue</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All members should be considered private and accessed only through API functions </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct modification of structure members may lead to undefined behavior </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7queue_t4dataE">
+<span id="_CPPv3N7queue_t4dataE"></span><span id="_CPPv2N7queue_t4dataE"></span><span id="queue_t::data__voidPA"></span><span class="target" id="structqueue__t_1a0f05634a7251d8b8e67912efe3d69dcb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">QUEUE_MAX_SIZE</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N7queue_t4dataE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7queue_t5frontE">
+<span id="_CPPv3N7queue_t5frontE"></span><span id="_CPPv2N7queue_t5frontE"></span><span id="queue_t::front__i"></span><span class="target" id="structqueue__t_1aca130fe1133a3e070497e138c320b471"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">front</span></span></span><a class="headerlink" href="#_CPPv4N7queue_t5frontE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7queue_t4rearE">
+<span id="_CPPv3N7queue_t4rearE"></span><span id="_CPPv2N7queue_t4rearE"></span><span id="queue_t::rear__i"></span><span class="target" id="structqueue__t_1a23b0921b1d6178fcd05c5a6f9d6da603"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rear</span></span></span><a class="headerlink" href="#_CPPv4N7queue_t4rearE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7queue_t5countE">
+<span id="_CPPv3N7queue_t5countE"></span><span id="_CPPv2N7queue_t5countE"></span><span id="queue_t::count__i"></span><span class="target" id="structqueue__t_1a058245e68052484f4ef9e51ff1553c31"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">count</span></span></span><a class="headerlink" href="#_CPPv4N7queue_t5countE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p><strong>Circular Queue Header</strong></p>
+<p>Circular Queue (Ring Buffer) implementation for embedded systems. </p>
+<p>This header provides a circular queue implementation using static memory allocation. The circular queue is particularly useful for streaming data and fixed-size buffers where memory efficiency is crucial.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Key Features:</strong></dt><dd><p><ul class="simple">
+<li><p>Static memory allocation (no malloc/free)</p></li>
+<li><p>Circular buffer behavior with wrap-around</p></li>
+<li><p>Memory efficient reuse of buffer space</p></li>
+<li><p>Configurable maximum size via CIRCULAR_QUEUE_MAX_SIZE</p></li>
+<li><p>Distinction between full and empty states</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Performance Characteristics:</strong></dt><dd><p><ul class="simple">
+<li><p>Enqueue: O(1)</p></li>
+<li><p>Dequeue: O(1)</p></li>
+<li><p>Peek: O(1)</p></li>
+<li><p>Size check: O(1)</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Difference from Regular Queue:</strong></dt><dd><p>Unlike regular queues, circular queues reuse the buffer space by wrapping around to the beginning when reaching the end. This makes them ideal for continuous data streaming applications.</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Include this header to use the circular queue functionality </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure CIRCULAR_QUEUE_MAX_SIZE is appropriate for your memory constraints</p>
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416circular_queue_t">
+<span id="_CPPv316circular_queue_t"></span><span id="_CPPv216circular_queue_t"></span><span id="circular_queue_t"></span><span class="target" id="structcircular__queue__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">circular_queue_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;circular_queue.h&gt;</em></div>
+<p>Circular queue data structure. </p>
+<p>This structure maintains the circular queue state including the data array, front and rear pointers, and a full indicator. The circular nature is achieved through modulo arithmetic on the pointers.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>data[]: Array to store queue elements</p></li>
+<li><p>front: Index of the first element to be dequeued</p></li>
+<li><p>rear: Index where the next element will be enqueued</p></li>
+<li><p>is_full: Flag to distinguish between full and empty states</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Full vs Empty Detection:</strong></dt><dd><p>Since front == rear can mean both empty and full, the is_full flag is used to distinguish between these states.</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All members should be considered private and accessed only through API functions </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct modification of structure members may lead to undefined behavior </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t4dataE">
+<span id="_CPPv3N16circular_queue_t4dataE"></span><span id="_CPPv2N16circular_queue_t4dataE"></span><span id="circular_queue_t::data__voidPA"></span><span class="target" id="structcircular__queue__t_1abb0eba54d51115677bafd41cd000d0e5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">CIRCULAR_QUEUE_MAX_SIZE</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<dd><p>Array of void pointers to store any data type. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t5frontE">
+<span id="_CPPv3N16circular_queue_t5frontE"></span><span id="_CPPv2N16circular_queue_t5frontE"></span><span id="circular_queue_t::front__i"></span><span class="target" id="structcircular__queue__t_1a17587e2d6d985681c56192e35f9c81f4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">front</span></span></span><br /></dt>
+<dd><p>Index of the front element (next to dequeue) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t4rearE">
+<span id="_CPPv3N16circular_queue_t4rearE"></span><span id="_CPPv2N16circular_queue_t4rearE"></span><span id="circular_queue_t::rear__i"></span><span class="target" id="structcircular__queue__t_1a653437a88db23764a74aac27d655864b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rear</span></span></span><br /></dt>
+<dd><p>Index of the rear position (next enqueue location) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16circular_queue_t7is_fullE">
+<span id="_CPPv3N16circular_queue_t7is_fullE"></span><span id="_CPPv2N16circular_queue_t7is_fullE"></span><span id="circular_queue_t::is_full__i"></span><span class="target" id="structcircular__queue__t_1abf97ff185d40b900b19dcbf57f862085"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_full</span></span></span><br /></dt>
+<dd><p>Flag indicating if the queue is full (1) or not (0) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p><strong>Priority Queue Header</strong></p>
+<p>Priority Queue (Binary Max-Heap) implementation for embedded systems. </p>
+<p>This header provides a priority queue implementation using a binary max-heap with static memory allocation. Higher priority elements are served first, making it ideal for task scheduling and resource management in embedded systems.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Key Features:</strong></dt><dd><p><ul class="simple">
+<li><p>Static memory allocation (no malloc/free)</p></li>
+<li><p>Binary max-heap implementation for efficient priority ordering</p></li>
+<li><p>Higher numbers indicate higher priority</p></li>
+<li><p>Configurable maximum size via PRIORITY_QUEUE_MAX_SIZE</p></li>
+<li><p>O(log n) insertion and deletion operations</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Performance Characteristics:</strong></dt><dd><p><ul class="simple">
+<li><p>Enqueue: O(log n) - heap insertion with bubble-up</p></li>
+<li><p>Dequeue: O(log n) - heap removal with bubble-down</p></li>
+<li><p>Peek: O(1) - access to highest priority element</p></li>
+<li><p>Size check: O(1)</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Binary Heap Properties:</strong></dt><dd><p><ul class="simple">
+<li><p>Complete binary tree structure stored in array</p></li>
+<li><p>Parent node always has higher priority than children</p></li>
+<li><p>Automatic rebalancing maintains heap property</p></li>
+<li><p>Efficient array-based representation</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Include this header to use the priority queue functionality </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure PRIORITY_QUEUE_MAX_SIZE is appropriate for your memory constraints </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Higher numbers indicate higher priority in this implementation</p>
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv424priority_queue_element_t">
+<span id="_CPPv324priority_queue_element_t"></span><span id="_CPPv224priority_queue_element_t"></span><span id="priority_queue_element_t"></span><span class="target" id="structpriority__queue__element__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">priority_queue_element_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;priority_queue.h&gt;</em></div>
+<p>Priority queue element structure. </p>
+<p>Each element in the priority queue contains both data and its associated priority value. This allows the heap to maintain proper ordering.</p>
+<p><dl class="simple">
+<dt><strong>Priority Semantics:</strong></dt><dd><p>Higher numerical values indicate higher priority. For example:<ul class="simple">
+<li><p>Priority 10 will be processed before priority 5</p></li>
+<li><p>Priority 1 will be processed last among priorities 1, 5, 10</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both data and priority are stored together for efficiency </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Priority values should be chosen carefully to avoid overflow </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N24priority_queue_element_t4dataE">
+<span id="_CPPv3N24priority_queue_element_t4dataE"></span><span id="_CPPv2N24priority_queue_element_t4dataE"></span><span id="priority_queue_element_t::data__voidP"></span><span class="target" id="structpriority__queue__element__t_1a4a15f8bbcb8e87c3bb1fb5d92b9ef7b2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><br /></dt>
+<dd><p>Pointer to the actual data element. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N24priority_queue_element_t8priorityE">
+<span id="_CPPv3N24priority_queue_element_t8priorityE"></span><span id="_CPPv2N24priority_queue_element_t8priorityE"></span><span id="priority_queue_element_t::priority__i"></span><span class="target" id="structpriority__queue__element__t_1a0295d10111f3e8eec9d1165995829c6c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">priority</span></span></span><br /></dt>
+<dd><p>Priority value (higher numbers = higher priority) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416priority_queue_t">
+<span id="_CPPv316priority_queue_t"></span><span id="_CPPv216priority_queue_t"></span><span id="priority_queue_t"></span><span class="target" id="structpriority__queue__t"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">priority_queue_t</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;priority_queue.h&gt;</em></div>
+<p>Priority queue data structure. </p>
+<p>This structure maintains the priority queue state including the heap array and current size. The heap property is maintained through specialized insertion and deletion algorithms.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>elements[]: Array implementing the binary heap</p></li>
+<li><p>size: Current number of elements in the heap</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Heap Property:</strong></dt><dd><p>For any element at index i: elements[i].priority &gt;= elements[2*i+1].priority (left child) elements[i].priority &gt;= elements[2*i+2].priority (right child)</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All members should be considered private and accessed only through API functions </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct modification of structure members will break heap property </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16priority_queue_t8elementsE">
+<span id="_CPPv3N16priority_queue_t8elementsE"></span><span id="_CPPv2N16priority_queue_t8elementsE"></span><span id="priority_queue_t::elements__priority_queue_element_tA"></span><span class="target" id="structpriority__queue__t_1a6d9658ffd0868e95c9d5a077a2f905ce"></span><a class="reference internal" href="data_structures.html#_CPPv424priority_queue_element_t" title="priority_queue_element_t"><span class="n"><span class="pre">priority_queue_element_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elements</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">PRIORITY_QUEUE_MAX_SIZE</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<dd><p>Heap array of elements. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16priority_queue_t4sizeE">
+<span id="_CPPv3N16priority_queue_t4sizeE"></span><span id="_CPPv2N16priority_queue_t4sizeE"></span><span id="priority_queue_t::size__i"></span><span class="target" id="structpriority__queue__t_1aad9b5511b8018cb9efa62f89dbc0bde1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><br /></dt>
+<dd><p>Current number of elements. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p><strong>Linked List Header</strong></p>
+<p>Linked List implementation for embedded systems. </p>
+<p>This header provides a traditional linked list implementation with head and tail operations. This was the original data structure in the template and demonstrates basic dynamic list operations.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Key Features:</strong></dt><dd><p><ul class="simple">
+<li><p>Traditional linked list structure with void* data</p></li>
+<li><p>Head and tail insertion/deletion operations</p></li>
+<li><p>Manual memory management (user provides nodes)</p></li>
+<li><p>Suitable for dynamic collections of varying sizes</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Performance Characteristics:</strong></dt><dd><p><ul class="simple">
+<li><p>Insert at head: O(1)</p></li>
+<li><p>Insert at tail: O(n) - requires traversal</p></li>
+<li><p>Delete at head: O(1)</p></li>
+<li><p>Delete at tail: O(n) - requires traversal</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Memory Management:</strong></dt><dd><p>Unlike the queue implementations, the linked list requires users to provide their own node structures. This gives more control but requires careful memory management.</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Include this header to use the linked list functionality </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>User is responsible for node allocation and data lifetime management</p>
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv45_Node">
+<span id="_CPPv35_Node"></span><span id="_CPPv25_Node"></span><span id="_Node"></span><span class="target" id="struct__Node"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_Node</span></span></span><a class="headerlink" href="#_CPPv45_Node" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;linked_list.h&gt;</em></div>
+<p>Node structure for the linked list. </p>
+<p>Each node contains a void pointer to data and a pointer to the next node. Users must allocate and manage these structures themselves.</p>
+<p><dl class="simple">
+<dt><strong>Structure Layout:</strong></dt><dd><p><ul class="simple">
+<li><p>data: Void pointer to user’s data</p></li>
+<li><p>next: Pointer to the next node in the list</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Usage Pattern:</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>User allocates node_t structure</p></li>
+<li><p>User sets data pointer to their data</p></li>
+<li><p>User calls linked list functions to manage the node</p></li>
+<li><p>User is responsible for node cleanup</p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference internal" href="#struct__Node"><span class="std std-ref">_Node</span></a> prefix prevents naming conflicts with user structures </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Users must ensure proper initialization of both data and next pointers </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5_Node4dataE">
+<span id="_CPPv3N5_Node4dataE"></span><span id="_CPPv2N5_Node4dataE"></span><span id="_Node::data__voidP"></span><span class="target" id="struct__Node_1add5068eac78f49c4444566d1784e2640"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N5_Node4dataE" title="Link to this definition"></a><br /></dt>
+<dd><p>Pointer to user-provided data. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5_Node4nextE">
+<span id="_CPPv3N5_Node4nextE"></span><span id="_CPPv2N5_Node4nextE"></span><span id="_Node::next___NodeP"></span><span class="target" id="struct__Node_1a224e269ac8b4bdc1e05b8fea5b01a735"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45_Node" title="_Node"><span class="n"><span class="pre">_Node</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">next</span></span></span><a class="headerlink" href="#_CPPv4N5_Node4nextE" title="Link to this definition"></a><br /></dt>
+<dd><p>Pointer to the next node in the list. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p><strong>Common Types</strong></p>
+<p>Common type definitions for STM32 DevOps Template data structures. </p>
+<p>This header provides shared type definitions used across all data structure implementations to maintain consistency and avoid naming conflicts between different modules.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This file should be included by all data structure headers to ensure consistent status type definitions across the entire project.</p>
+</div>
+<p><strong>Main Application</strong></p>
+<p>Main header file for STM32 DevOps Template demonstrations. </p>
+<p>This header provides declarations for the main demonstration functions that showcase the various data structure implementations.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This header is kept minimal as all functionality is demonstrated directly in main.c without requiring external declarations</p>
+</div>
+</section>
+</section>
+<section id="implementation-files">
+<h2>Implementation Files<a class="headerlink" href="#implementation-files" title="Link to this heading"></a></h2>
+<p>For detailed implementation information with function documentation:</p>
+<p><strong>Queue Implementation</strong></p>
+<p>Implementation of regular queue (FIFO) operations. </p>
+<p>This file contains the implementation of all regular queue operations using circular array indexing for efficient memory utilization.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>queue.h for API documentation </p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Implementation Details:</strong></dt><dd><p><ul class="simple">
+<li><p>Uses circular array with front/rear pointers</p></li>
+<li><p>Count variable tracks current number of elements</p></li>
+<li><p>Efficient O(1) operations for all queue functions</p></li>
+<li><p>Prevents buffer overflow through proper bounds checking</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All functions include proper error checking and boundary validation </p>
+</div>
+<p><strong>Circular Queue Implementation</strong></p>
+<p>Implementation of circular queue (ring buffer) operations. </p>
+<p>This file contains the implementation of all circular queue operations using efficient modulo arithmetic for wrap-around behavior.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>circular_queue.h for API documentation </p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All functions include proper error checking and boundary validation </p>
+</div>
+<p><strong>Priority Queue Implementation</strong></p>
+<p>Implementation of priority queue (binary max-heap) operations. </p>
+<p>This file contains the implementation of all priority queue operations using binary heap algorithms for efficient priority-based ordering.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>priority_queue.h for API documentation </p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Implementation Details:</strong></dt><dd><p><ul class="simple">
+<li><p>Uses array-based binary heap representation</p></li>
+<li><p>Heapify-up algorithm for insertion</p></li>
+<li><p>Heapify-down algorithm for deletion</p></li>
+<li><p>Parent-child relationships: parent(i) = (i-1)/2, children(i) = 2*i+1, 2*i+2</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All functions include proper error checking and heap property maintenance </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413swap_elementsP24priority_queue_element_tP24priority_queue_element_t">
+<span id="_CPPv313swap_elementsP24priority_queue_element_tP24priority_queue_element_t"></span><span id="_CPPv213swap_elementsP24priority_queue_element_tP24priority_queue_element_t"></span><span id="swap_elements__priority_queue_element_tP.priority_queue_element_tP"></span><span class="target" id="priority__queue_8c_1a7378601b80f09d5ae39fade902ed34e8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap_elements</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="data_structures.html#_CPPv424priority_queue_element_t" title="priority_queue_element_t"><span class="n"><span class="pre">priority_queue_element_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <a class="reference internal" href="data_structures.html#_CPPv424priority_queue_element_t" title="priority_queue_element_t"><span class="n"><span class="pre">priority_queue_element_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413swap_elementsP24priority_queue_element_tP24priority_queue_element_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Swaps two priority queue elements. </p>
+<p>Helper function that exchanges the contents of two priority queue elements including both data and priority values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an internal helper function used by heap operations </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Time complexity: O(1) </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – <strong>[inout]</strong> Pointer to the first element </p></li>
+<li><p><strong>b</strong> – <strong>[inout]</strong> Pointer to the second element</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410heapify_upP16priority_queue_ti">
+<span id="_CPPv310heapify_upP16priority_queue_ti"></span><span id="_CPPv210heapify_upP16priority_queue_ti"></span><span id="heapify_up__priority_queue_tP.i"></span><span class="target" id="priority__queue_8c_1a724e71038d2a4cf4c64c5a43faf440b9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">heapify_up</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="data_structures.html#_CPPv416priority_queue_t" title="priority_queue_t"><span class="n"><span class="pre">priority_queue_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">queue</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410heapify_upP16priority_queue_ti" title="Link to this definition"></a><br /></dt>
+<dd><p>Restores heap property by moving element upward. </p>
+<p>Recursive function that compares an element with its parent and swaps if the element has higher priority. Continues until heap property is satisfied or root is reached.</p>
+<p><dl class="simple">
+<dt><strong>Algorithm:</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>Calculate parent index: (index - 1) / 2</p></li>
+<li><p>If current element has higher priority than parent, swap</p></li>
+<li><p>Recursively continue with parent index</p></li>
+<li><p>Stop when root is reached or heap property is satisfied</p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an internal helper function used during insertion </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Time complexity: O(log n) where n is the number of elements </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>queue</strong> – <strong>[inout]</strong> Pointer to the priority queue </p></li>
+<li><p><strong>index</strong> – <strong>[in]</strong> Index of the element to heapify upward</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412heapify_downP16priority_queue_ti">
+<span id="_CPPv312heapify_downP16priority_queue_ti"></span><span id="_CPPv212heapify_downP16priority_queue_ti"></span><span id="heapify_down__priority_queue_tP.i"></span><span class="target" id="priority__queue_8c_1a52715c03258ecc0181902b8c63eda875"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">heapify_down</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="data_structures.html#_CPPv416priority_queue_t" title="priority_queue_t"><span class="n"><span class="pre">priority_queue_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">queue</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412heapify_downP16priority_queue_ti" title="Link to this definition"></a><br /></dt>
+<dd><p>Restores heap property by moving element downward. </p>
+<p>Recursive function that compares an element with its children and swaps with the highest priority child if necessary. Continues until heap property is satisfied or leaf is reached.</p>
+<p><dl class="simple">
+<dt><strong>Algorithm:</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>Calculate left child: 2 * index + 1</p></li>
+<li><p>Calculate right child: 2 * index + 2</p></li>
+<li><p>Find the largest priority among current, left, and right</p></li>
+<li><p>If largest is not current, swap and continue recursively</p></li>
+<li><p>Stop when heap property is satisfied or leaf is reached</p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an internal helper function used during deletion </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Time complexity: O(log n) where n is the number of elements </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>queue</strong> – <strong>[inout]</strong> Pointer to the priority queue </p></li>
+<li><p><strong>index</strong> – <strong>[in]</strong> Index of the element to heapify downward</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<p><strong>Linked List Implementation</strong></p>
+<p>Implementation of linked list operations. </p>
+<p>This file contains the implementation of all linked list operations using a global head pointer and manual node management.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>linked_list.h for API documentation </p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+<dt><strong>Implementation Details:</strong></dt><dd><p><ul class="simple">
+<li><p>Uses global static head pointer for list management</p></li>
+<li><p>User-provided nodes with manual memory management</p></li>
+<li><p>Traditional linked list traversal algorithms</p></li>
+<li><p>Head operations are O(1), tail operations are O(n)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All functions include proper error checking and NULL pointer validation </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only one linked list instance can be active at a time </p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44head">
+<span id="_CPPv34head"></span><span id="_CPPv24head"></span><span id="head__node_tP"></span><span class="target" id="linked__list_8c_1ad9513cdd45a8c7a0435f6fb6cb8a3fd6"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">node_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">head</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv44head" title="Link to this definition"></a><br /></dt>
+<dd><p>Global head pointer for the linked list. </p>
+<p>Static variable that maintains the reference to the first node in the linked list. Only one list can be active at a time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This global state limits the implementation to a single list instance </p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Direct access to this variable should be avoided </p>
+</div>
+</dd></dl>
+
+</div>
+<p><strong>Main Application Implementation</strong></p>
+<p>Main demonstration file for STM32 DevOps Template queue implementations. </p>
+<p>This file provides comprehensive examples of using three different queue implementations without dynamic memory allocation, suitable for embedded systems:<ul class="simple">
+<li><p>Regular Queue (FIFO)</p></li>
+<li><p>Circular Queue (Ring Buffer)</p></li>
+<li><p>Priority Queue (Binary Heap)</p></li>
+</ul>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/shishir-dey/stm32-devops-template">https://github.com/shishir-dey/stm32-devops-template</a></p>
+</div>
+<dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>Shishir Dey </p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>2025 </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>1.0.0</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All queue implementations use statically allocated arrays to avoid heap fragmentation issues common in embedded systems.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainv">
+<span id="_CPPv34mainv"></span><span id="_CPPv24mainv"></span><span id="main"></span><span class="target" id="main_8c_1ae66f6b31b5ad750f1fe042a706a4e3d4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainv" title="Link to this definition"></a><br /></dt>
+<dd><p>Main entry point for the STM32 DevOps Template demonstration. </p>
+<p>Executes demonstrations of all implemented data structures to showcase their usage in embedded systems. Each demonstration is independent and can be used as a reference implementation.</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>demonstrate_linked_list()</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>demonstrate_regular_queue()</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>demonstrate_circular_queue()</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>demonstrate_priority_queue()</p>
+</div>
+<dl class="simple">
+<dt><strong>Execution Flow:</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>Linked list demonstration (original functionality)</p></li>
+<li><p>Regular queue demonstration (FIFO behavior)</p></li>
+<li><p>Circular queue demonstration (ring buffer)</p></li>
+<li><p>Priority queue demonstration (priority-based processing)</p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All data structures use static allocation suitable for embedded systems </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This code is designed to run on STM32 microcontrollers but can be compiled for host testing as well</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int Always returns 0 for successful execution</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../overview.html" class="btn btn-neutral float-left" title="Project Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_structures.html" class="btn btn-neutral float-right" title="Data Structures API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shishir Dey.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
