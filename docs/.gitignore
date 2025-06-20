@@ -1,0 +1,12 @@
+# Sphinx build outputs
+_build/
+_static/
+_templates/
+
+# Doxygen outputs
+doxygen/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class 
