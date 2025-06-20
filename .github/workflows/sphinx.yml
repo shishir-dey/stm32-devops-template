@@ -33,6 +33,8 @@ jobs:
         run: |
           cd docs
           make html
+          # Copy .nojekyll to output directory to disable Jekyll processing
+          cp ../.nojekyll _build/html/
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
@@ -41,3 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/_build/html
           publish_branch: gh-pages
+          force_orphan: true
