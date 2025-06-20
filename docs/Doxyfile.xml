@@ -1,0 +1,38 @@
+PROJECT_NAME           = "STM32 DevOps Template"
+PROJECT_BRIEF          = "Repository for showcasing DevOps practices within microcontroller projects"
+PROJECT_NUMBER         = "v1.0.0"
+
+OUTPUT_DIRECTORY       = doxygen
+OUTPUT_LANGUAGE        = English
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+GENERATE_HTML          = NO
+GENERATE_LATEX         = NO
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
+
+INPUT                  = ../src
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+
+EXCLUDE_PATTERNS       = */build/* \
+                         */cmake-*/* \
+                         */.git/* \
+                         */autogen/*
+
+JAVADOC_AUTOBRIEF      = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = NO
+EXPAND_ONLY_PREDEF     = NO
+SEARCH_INCLUDES        = YES
+
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO 
