@@ -1,0 +1,2 @@
+# This file disables Jekyll processing for GitHub Pages
+# We use Sphinx + Breathe for documentation generation instead 
