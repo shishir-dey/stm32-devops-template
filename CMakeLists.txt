@@ -73,10 +73,8 @@ else()
                 src/autogen/syscalls.c
         )
 
-        include(${CMAKE_SOURCE_DIR}/config/project_info.cmake)
-
         set(TARGET_EXECUTABLE
-                ${PROJECT_NAME}_${ENVIRONMENT}_${CLIENT}_${FEATURE}_${FW_VERSION}.out
+                ${PROJECT_NAME}.out
         )
 
         add_executable(${TARGET_EXECUTABLE}

@@ -15,7 +15,7 @@ The STM32 DevOps Template is a comprehensive embedded systems project that demon
 
 ### Building for Host (Testing)
 ```bash
-mkdir build && cd build
+mkdir cmake-host-build-debug && cd cmake-host-build-debug
 cmake -DHOST=ON ..
 make
 ctest
@@ -23,7 +23,7 @@ ctest
 
 ### Building for STM32 Target
 ```bash
-mkdir build && cd build
+mkdir cmake-target-build-debug && cd cmake-target-build-debug
 cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi-gcc.cmake ..
 make
 ```
@@ -47,16 +47,5 @@ stm32-devops-template/
 ├── lib/Unity/             # Unity testing framework
 ├── docs/                   # Sphinx documentation
 ├── cmake/                  # CMake toolchain and modules
-├── config/                 # Project configuration
 └── .github/workflows/      # CI/CD pipelines
 ```
-
-## Documentation
-
-📖 **[Full Documentation](https://shishir-dey.github.io/stm32-devops-template/)**
-
-The complete documentation includes:
-- API Reference with Sphinx + Breathe
-- Usage Examples and Best Practices
-- Testing Framework Guide
-- DevOps Integration Instructions
